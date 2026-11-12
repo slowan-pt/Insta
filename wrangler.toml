@@ -1,0 +1,31 @@
+name = "reels-monitor"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Cron Triggers do Cloudflare têm granularidade mínima de 1 minuto.
+# Para obter 30 s, cada execução coleta em t=0 e de novo em t=30 s.
+[triggers]
+crons = ["* * * * *"]
+
+# O ID do D1 é provisionado automaticamente no primeiro `wrangler deploy`
+# (wrangler >= 4.45). O schema é criado pelo próprio Worker (CREATE IF NOT EXISTS).
+[[d1_databases]]
+binding = "DB"
+database_name = "reels-monitor"
+
+[vars]
+REEL_URL = "https://www.instagram.com/reel/Dfkq2eZRR0K/"
+REEL_SHORTCODE = "Dfkq2eZRR0K"
+REEL_PROFILE = "colegioadventistaniteroi"
+INITIAL_VIEWS = "3582"
+INITIAL_DATE = "2026-11-12"
+# 13/11/2026 19:00 em Brasília (UTC-3) = 22:00 UTC
+END_AT = "2026-11-13T22:00:00Z"
+INTERVAL_SECONDS = "30"
+GRAPH_HOST = "graph.facebook.com"
+GRAPH_VERSION = "v21.0"
+
+# Secrets (wrangler secret put ...):
+#   IG_ACCESS_TOKEN  token da Instagram Graph API da conta dona do Reel
+#   IG_USER_ID       ID da conta profissional (Instagram Business/Creator)
+#   ADMIN_TOKEN      senha para o botão "Parar monitoramento"
