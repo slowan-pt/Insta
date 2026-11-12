@@ -1,0 +1,7 @@
+ReelMon para PC (Windows / macOS / Linux) - Python 3.9+
+  pip install flask
+  python reelmon.py start      (segundo plano)     python reelmon.py run   (primeiro plano, mostra cada ciclo)
+  python reelmon.py status | watch | panel | logs | stop
+  python reelmon.py add 3700   (leitura MANUAL, ex.: numero lido no Instagram Insights)
+Config: pasta ~/reelmon/config.env (python reelmon.py config). Intervalo padrao: 45 s.
+Fonte automatica: SOURCE=graph + IG_ACCESS_TOKEN + IG_USER_ID (Instagram Graph API, conta dona do Reel).
